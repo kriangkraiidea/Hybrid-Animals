@@ -1,19 +1,40 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+  content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#00FF9C",
+
+          secondary: "#B6FFA1",
+
+          accent: "#FEFFA7",
+
+          neutral: "#fff",
+
+          "base-100": "#fff",
+
+          info: "#2671fc",
+
+          success: "#4ade80",
+
+          warning: "#FFE700",
+
+          error: "#ff0000",
+        },
+         backgroundImage: {
+        'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
       },
-    },
+      gradientColorStops: {
+        'primary': '#ff7e5f',
+        'secondary': '#feb47b',
+      },
+      },
+    ],
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  //...
 };
 export default config;
