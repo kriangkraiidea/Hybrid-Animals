@@ -90,7 +90,7 @@ const Onplay = () => {
       setIsCounting(true);
       setTimeLeft(timelimit);
     }
-  }, [isImageRevealed, isCounting, hasAnswered]);
+  }, [isImageRevealed, isCounting, hasAnswered,timelimit]);
 
   useEffect(() => {
     if (timeLeft === 0) {

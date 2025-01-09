@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 const About: React.FC = () => {
   const [stats, setStats] = useState<{ totalUser: number; totalPlayGame: number } | null>(null);
@@ -31,7 +32,12 @@ const About: React.FC = () => {
           <div className="text-secondary ">
             <div className="avatar ">
               <div className="w-24 rounded-md ">
-                <img src="https://firebasestorage.googleapis.com/v0/b/hybrid-animals-9a289.appspot.com/o/38472.jpg?alt=media&token=888f75be-49f9-4fb7-9f84-e561bfdba600" />
+              <Image
+                  src="https://firebasestorage.googleapis.com/v0/b/hybrid-animals-9a289.appspot.com/o/38472.jpg?alt=media&token=888f75be-49f9-4fb7-9f84-e561bfdba600"
+                  alt="ผู้สร้างเกม"
+                  width={96}
+                  height={96}
+                />
               </div>
             </div>
           </div>
@@ -126,9 +132,12 @@ const About: React.FC = () => {
       </section>
       <footer className="footer rounded-t-full footer-center bg-primary text-primary-content p-2">
         <aside>
-          <img
+          <Image
             className="size-20 md:size-28 xl:size-36"
             src="https://firebasestorage.googleapis.com/v0/b/hybrid-animals-9a289.appspot.com/o/lion%20head.png?alt=media&token=caee7b5d-43bd-492e-8cc0-c01cd8cdfd6d"
+            alt="Lion Head Icon"
+            width={100}
+            height={100}
           />
 
           <p className="font-bold">

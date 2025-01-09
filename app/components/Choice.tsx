@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { firestore } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import React from "react";
+import Image from "next/image";
 
 interface Animal {
   id: string;
@@ -74,7 +75,13 @@ const Choice: React.FC<ChoiceProps> = ({ addSelectedAnimal, selectedAnimals, cho
                       onClick={() => canAddMoreAnimals && addAnimalAndCloseModal(animal, type)} // เรียกฟังก์ชันที่รวมการปิด modal
                       disabled={!canAddMoreAnimals}
                     >
-                      <img src={animal.image || defaultImage} alt={animal.name} className="w-full h-32 object-cover mb-2 rounded" />
+                       <Image
+                        src={animal.image || defaultImage}
+                        alt={animal.name}
+                        width={150}
+                        height={150}
+                        className="w-full h-32 object-cover mb-2 rounded"
+                      />
                       <p className="font-semibold">{animal.name}</p>
                     </button>
                   ))}

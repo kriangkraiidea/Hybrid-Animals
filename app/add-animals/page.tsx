@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { firestore, storage } from "@/lib/firebase";
+import Image from "next/image";
 import {
   collection,
   addDoc,
@@ -228,7 +229,7 @@ const AddAnimal = () => {
                 <td className="px-4 py-2">{animal.name}</td>
                 <td className="px-4 py-2">{animal.type}</td>
                 <td className="px-4 py-2">
-                  <img src={animal.image} alt={animal.name} className="w-24" />
+                <Image src={animal.image} alt={animal.name} width={80} height={80} />
                 </td>
                 <td className="px-4 py-2">
                   <button

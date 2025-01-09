@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firestore, storage} from '@/lib/firebase';
 import { collection, addDoc, getDocs, writeBatch, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import Image from "next/image";
 
 interface Monster {
   id?: string;
@@ -35,7 +36,7 @@ const AddMonster = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [monsters, setMonsters] = useState<Monster[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<object | null>(null);
 
   useEffect(() => {
     if (session) {
@@ -267,7 +268,7 @@ const AddMonster = () => {
                     <td className="px-4 py-2">{monster.answer.join(', ')}</td>
                     <td className="px-4 py-2">{monster.type}</td>
                     <td className="px-4 py-2">
-                      <img src={monster.image} alt={monster.name} className="w-24" />
+                      <Image src={monster.image} alt={monster.name} width={80} height={80} />
                     </td>
                     <td className="px-4 py-2">
                       <button className="btn btn-info btn-sm mr-2 btn-outline " onClick={() => handleEdit(monster)}>Edit</button>
