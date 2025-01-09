@@ -1,11 +1,10 @@
 import NextAuth, { AuthOptions, DefaultSession } from "next-auth";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import User from "@/model/User";
 import { connectMongoDB } from "@/lib/mongodb";
 import GoogleProvider from "next-auth/providers/google";
-
-// กำหนด type สำหรับ credentials
 
 // ขยาย DefaultSession และ User interfaces
 declare module "next-auth" {
@@ -22,7 +21,7 @@ declare module "next-auth" {
   }
 }
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -31,14 +30,13 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log("credentials = ", credentials);
         if (!credentials) {
           return null;
         }
-    
+
         await connectMongoDB();
         const user = await User.findOne({ email: credentials.email });
-        console.log("user in api auth", user);
+
         if (user && (await bcrypt.compare(credentials.password, user.password))) {
           return {
             id: user.id,
@@ -47,7 +45,6 @@ export const authOptions: AuthOptions = {
             role: user.role,
           };
         } else {
-          console.error("Invalid email or password");
           throw new Error("Invalid email or password");
         }
       },
@@ -63,41 +60,28 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async signIn({ user, account }) {
-      if (account && account.provider === "google") {
-        const { name, email } = user;
-        try {
-          await connectMongoDB();
-          const userExists = await User.findOne({ email });
+      if (account?.provider === "google") {
+        const { email, name } = user;
 
-          if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/auth/register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name,
-                email,
-              }),
-            });
+        await connectMongoDB();
+        const userExists = await User.findOne({ email });
 
-            if (res.ok) {
-              return true; // Returning true on success
-            }
-          }
-        } catch (error) {
-          console.log(error);
-          return false; // Returning false on error
+        if (!userExists) {
+          const res = await fetch("http://localhost:3000/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, name }),
+          });
+
+          if (!res.ok) return false;
         }
       }
-
-      return true; // Returning true for other providers
+      return true;
     },
     jwt: async ({ token, user }) => {
       if (user) {
-        const userWithIdAndRole = user as { id: string; role: string }; // Type assertion
-        token.id = userWithIdAndRole.id;
-        token.role = userWithIdAndRole.role;
+        token.id = user.id as string;
+        token.role = user.role as string;
       }
       return token;
     },
