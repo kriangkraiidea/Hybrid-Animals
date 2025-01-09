@@ -237,7 +237,6 @@ const Onplay = () => {
             <li className={`step ${playround > 2 ? "step-primary" : ""}`}>รอบที่ 3</li>
           </ul>
         </div>
-        <div>{timeLeft}</div>
         <progress className={`progress my-2 ${getProgressColor()}`} value={timeLeft} max={timelimit}></progress>
         <Answer
           selectedAnimals={selectedAnimals}
