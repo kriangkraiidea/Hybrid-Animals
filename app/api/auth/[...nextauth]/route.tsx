@@ -6,10 +6,6 @@ import { connectMongoDB } from "@/lib/mongodb";
 import GoogleProvider from "next-auth/providers/google";
 
 // กำหนด type สำหรับ credentials
-interface Credentials {
-  email: string;
-  password: string;
-}
 
 // ขยาย DefaultSession และ User interfaces
 declare module "next-auth" {
@@ -30,13 +26,16 @@ export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
-      credentials: {},
-      async authorize(credentials: Credentials | undefined) {
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
         console.log("credentials = ", credentials);
         if (!credentials) {
           return null;
         }
-
+    
         await connectMongoDB();
         const user = await User.findOne({ email: credentials.email });
         console.log("user in api auth", user);
