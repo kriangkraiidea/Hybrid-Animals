@@ -5,27 +5,27 @@ import bcrypt from "bcrypt";
 import User from "@/model/User";
 import { connectMongoDB } from "@/lib/mongodb";
 
-// ✅ ขยาย TypeScript Interface สำหรับ NextAuth
+// ✅ ขยาย TypeScript Interface อย่างถูกต้อง
 declare module "next-auth" {
   interface User {
     id: string;
-    role: string;
+    role?: string;
   }
 
   interface Session {
     user: {
       id: string;
-      role: string;
+      role?: string;
     } & DefaultSession["user"];
   }
 
   interface JWT {
     id: string;
-    role: string;
+    role?: string;
   }
 }
 
-// ✅ ตั้งค่า NextAuth Options พร้อม Type Guard
+// ✅ กำหนดค่า NextAuthOptions อย่างถูกต้อง
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -54,23 +54,20 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-        if (user) {
-            // ✅ ใช้ Type Guard ตรวจสอบก่อน assign ค่า
-            token.id = typeof user.id === "string" ? user.id : "";
-            token.role = typeof user.role === "string" ? user.role : "user";
-        }
-        return token;
+      if (user) {
+        token.id = typeof user.id === "string" ? user.id : "";
+        token.role = typeof user.role === "string" ? user.role : undefined;
+      }
+      return token;
     },
     async session({ session, token }) {
-        // ✅ ใช้ Type Guard ตรวจสอบก่อน assign ค่า
-        if (session.user) {
-            session.user.id = typeof token.id === "string" ? token.id : "";
-            session.user.role = typeof token.role === "string" ? token.role : "user";
-        }
-        return session;
+      if (session.user) {
+        session.user.id = typeof token.id === "string" ? token.id : "";
+        session.user.role = typeof token.role === "string" ? token.role : undefined;
+      }
+      return session;
     }
-}
-,
+  },
 };
 
 const handler = NextAuth(authOptions);
