@@ -7,10 +7,14 @@ export async function GET() {
   try {
     await connectMongoDB();
 
-    const players = await User.find({}).sort({ highest_score: -1 }).exec(); // Sort players by highest_score in descending order
+    const players = await User.find({}).sort({ highest_score: -1 }).exec(); // เรียงลำดับคะแนนสูงสุดจากมากไปน้อย
 
     return NextResponse.json(players, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    if (error instanceof Error) {
+      return NextResponse.json({ message: error.message }, { status: 500 });
+    } else {
+      return NextResponse.json({ message: "An unknown error occurred." }, { status: 500 });
+    }
   }
 }

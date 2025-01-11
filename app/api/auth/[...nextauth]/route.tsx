@@ -1,5 +1,4 @@
 import NextAuth, { AuthOptions, DefaultSession } from "next-auth";
-
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import User from "@/model/User";
@@ -21,7 +20,7 @@ declare module "next-auth" {
   }
 }
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
