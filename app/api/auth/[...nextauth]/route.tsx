@@ -5,8 +5,13 @@ import bcrypt from "bcrypt";
 import User from "@/model/User";
 import { connectMongoDB } from "@/lib/mongodb";
 
-// ✅ ขยาย TypeScript types
+// ✅ ขยาย TypeScript Interface สำหรับ NextAuth
 declare module "next-auth" {
+  interface User {
+    id: string;
+    role: string;
+  }
+
   interface Session {
     user: {
       id: string;
@@ -14,12 +19,13 @@ declare module "next-auth" {
     } & DefaultSession["user"];
   }
 
-  interface User {
+  interface JWT {
     id: string;
     role: string;
   }
 }
 
+// ✅ ตั้งค่า NextAuth Options พร้อม Type Guard
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -39,8 +45,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
   session: {
@@ -48,20 +54,23 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.id = typeof user.id === "string" ? user.id : "";
-        token.role = typeof user.role === "string" ? user.role : "user";
-      }
-      return token;
+        if (user) {
+            // ✅ ใช้ Type Guard ตรวจสอบก่อน assign ค่า
+            token.id = typeof user.id === "string" ? user.id : "";
+            token.role = typeof user.role === "string" ? user.role : "user";
+        }
+        return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = typeof token.id === "string" ? token.id : "";
-        session.user.role = typeof token.role === "string" ? token.role : "user";
-      }
-      return session;
-    },
-  },
+        // ✅ ใช้ Type Guard ตรวจสอบก่อน assign ค่า
+        if (session.user) {
+            session.user.id = typeof token.id === "string" ? token.id : "";
+            session.user.role = typeof token.role === "string" ? token.role : "user";
+        }
+        return session;
+    }
+}
+,
 };
 
 const handler = NextAuth(authOptions);
