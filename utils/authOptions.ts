@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import User from "@/model/User";
 import { connectMongoDB } from "@/lib/mongodb";
 
-// ✅ ขยาย TypeScript Interface อย่างถูกต้อง
 declare module "next-auth" {
   interface User {
     id: string;
@@ -25,7 +24,6 @@ declare module "next-auth" {
   }
 }
 
-// ✅ กำหนดค่า NextAuthOptions อย่างถูกต้อง
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
