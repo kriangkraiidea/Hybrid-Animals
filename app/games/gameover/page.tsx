@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import CountUp from "react-countup";
+import Link from 'next/link';
+
 
 const Gameover: React.FC = () => {
   const router = useRouter();
@@ -107,12 +109,12 @@ const Gameover: React.FC = () => {
           <CountUp start={0} end={highestScore} separator="," duration={1} />
         </div>
         <div className="flex justify-center mt-6">
-          <a href="/" className="btn btn-primary mx-2" onClick={stopplay}>
+          <Link href="/" className="btn btn-primary mx-2" onClick={stopplay}>
             Home
-          </a>
-          <a href="/games/onplay" className="btn btn-secondary mx-2" onClick={playagain}>
+          </Link>
+          <Link href="/games/onplay" className="btn btn-secondary mx-2" onClick={playagain}>
             Play Again
-          </a>
+          </Link>
         </div>
       </div>
 
