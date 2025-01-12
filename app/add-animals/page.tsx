@@ -27,14 +27,19 @@ const AddAnimal = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false); // เพิ่ม State สำหรับ Loading
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchAnimals = async () => {
     const querySnapshot = await getDocs(collection(firestore, "animals"));
-    const animalsList = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Animal[];
+    const animalsList = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        name: data.name,
+        type: data.type,
+        image: data.image || "", // ป้องกันค่า image เป็น undefined
+      };
+    }) as Animal[];
     setAnimals(animalsList);
   };
 
@@ -50,13 +55,17 @@ const AddAnimal = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true); // เปิด Loading State
+    setIsLoading(true);
 
     let imageUrl = image;
 
     try {
       if (imageFile) {
         imageUrl = await uploadImage(imageFile);
+      }
+
+      if (!imageUrl) {
+        throw new Error("Image URL is required.");
       }
 
       if (editId) {
@@ -79,11 +88,11 @@ const AddAnimal = () => {
       setImage("");
       setImageFile(null);
       fetchAnimals();
-      closeModal(); // ปิด Modal หลัง Submit สำเร็จ
+      closeModal();
     } catch (error) {
       console.error("Error submitting data:", error);
     } finally {
-      setIsLoading(false); // ปิด Loading State
+      setIsLoading(false);
     }
   };
 
@@ -104,14 +113,14 @@ const AddAnimal = () => {
   };
 
   const handleDelete = async (id: string) => {
-    setIsLoading(true); // แสดงหน้า Loading ขณะลบข้อมูล
+    setIsLoading(true);
     try {
       await deleteDoc(doc(firestore, "animals", id));
       fetchAnimals();
     } catch (error) {
       console.error("Error deleting animal:", error);
     } finally {
-      setIsLoading(false); // ปิด Loading State
+      setIsLoading(false);
     }
   };
 
@@ -132,7 +141,7 @@ const AddAnimal = () => {
 
   return (
     <div className="container mx-auto p-4 text-center">
-      {isLoading && ( // แสดง Loading Spinner
+      {isLoading && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader border-t-4 border-b-4 border-white rounded-full w-12 h-12 animate-spin"></div>
         </div>
@@ -229,7 +238,11 @@ const AddAnimal = () => {
                 <td className="px-4 py-2">{animal.name}</td>
                 <td className="px-4 py-2">{animal.type}</td>
                 <td className="px-4 py-2">
-                <Image src={animal.image} alt={animal.name} width={80} height={80} />
+                  {animal.image ? (
+                    <Image src={animal.image} alt={animal.name} width={80} height={80} />
+                  ) : (
+                    <span className="text-gray-500">No Image</span>
+                  )}
                 </td>
                 <td className="px-4 py-2">
                   <button
