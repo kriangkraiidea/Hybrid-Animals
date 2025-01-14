@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import daisyui from "daisyui";
 
 const config: Config = {
   content: [
@@ -29,12 +30,12 @@ const config: Config = {
         "gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
       },
       gradientColorStops: {
-        primary: "#ff7e5f",
-        secondary: "#feb47b",
+        primary: "#26996d",
+        secondary: "#87f229",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
 };
 
 export default config;
