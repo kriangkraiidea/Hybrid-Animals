@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProviders";
 import MainLayout from "./Mainlayout";
 import type { Metadata } from "next";
+import { authOptions } from "@/utils/authOptions";
 
 // ตั้งค่า favicon ให้แน่ใจว่าถูกต้อง (แก้ path)
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">
