@@ -26,7 +26,7 @@ declare module "next-auth" {
 console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
 
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXT_PUBLIC_SECRET,
+  
   debug: true,
   providers: [
     CredentialsProvider({
@@ -69,4 +69,5 @@ export const authOptions: NextAuthOptions = {
       return session;
     }
   },
+  secret: process.env.NEXT_PUBLIC_SECRET,
 };
