@@ -24,10 +24,8 @@ declare module "next-auth" {
     role?: string;
   }
 }
-console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
 
 const authOptions: NextAuthOptions = {
-  
   debug: true,
   providers: [
     CredentialsProvider({
@@ -68,13 +66,10 @@ const authOptions: NextAuthOptions = {
         session.user.role = typeof token.role === "string" ? token.role : undefined;
       }
       return session;
-    }
+    },
   },
-  secret: process.env.NEXT_PUBLIC_SECRET,
+  secret: process.env.NEXTAUTH_SECRET, // ตรวจสอบว่าเปลี่ยนเป็น NEXTAUTH_SECRET
 };
-
-
-
 
 const handler = NextAuth(authOptions);
 

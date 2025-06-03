@@ -20,7 +20,7 @@
     "mongodb": "^5.9.2",
     "mongoose": "^7.6.3",
     "next": "^15.1.4",
-    "next-auth": "^4.24.10",
+    "next-auth": "^4.24.11",
     "next-firebase-auth-edge": "^1.8.2",
     "react": "^19.0.0",
     "react-countup": "^6.5.3",

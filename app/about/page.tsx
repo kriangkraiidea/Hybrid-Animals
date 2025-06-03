@@ -151,7 +151,7 @@ const About: React.FC = () => {
         <nav>
           <h1 className="font-bold text-3xl">contact</h1>
           <h3>Email : kriangkraiidea@gmail.com</h3>
-          <h3>Tel : 0989380201</h3>
+          <h3>Tel : 0855455515</h3>
           <h3>Line ID : ideaofgod</h3>
           <div className="grid grid-flow-col gap-12">
             <a className="cursor-pointer">
