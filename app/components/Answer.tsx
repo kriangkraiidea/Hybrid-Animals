@@ -56,11 +56,12 @@ const Answer: React.FC<AnswerProps> = ({ isImageRevealed, selectedAnimals, choic
             {index < choiceQty - 1 && <span className="mx-2 text-xl font-bold">+</span>}
           </React.Fragment>
         ))}
-        <div className="border-l-4 border-green-500 flex flex-col p-2 pl-6 ml-4">
-          <div onClick={isImageRevealed ? resetSelectedAnimals : undefined} className={`cursor-pointer ${isImageRevealed ? "hover:scale-110 active:scale-90" : "opacity-50 cursor-not-allowed"}`}>
-            <p className={`text-center text-xl font-bold ${isImageRevealed ? "text-green-800" : "text-gray-500"}`}>confirm</p>
-            <span className="text-6xl leading-none overflow-visible">🫡</span>
-          </div>
+        <div
+          onClick={isImageRevealed ? resetSelectedAnimals : undefined}
+          className={`cursor-pointer flex flex-col items-center justify-center ${isImageRevealed ? "hover:scale-110 active:scale-90" : "opacity-50 cursor-not-allowed"}`}
+        >
+          <p className={`text-xl font-bold ${isImageRevealed ? "text-green-800" : "text-gray-500"}`}>confirm</p>
+          <span className="text-6xl leading-none overflow-visible min-h-[3.5rem] flex items-center justify-center">🫡</span>
         </div>
       </div>
     </div>
