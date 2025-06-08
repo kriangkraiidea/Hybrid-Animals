@@ -22,7 +22,7 @@ const Logout = () => {
 
   if (status === "loading") {
     return (
-      <div className="flex flex-col items-center justify-center bg-gray-100 p-4">
+      <div className="flex flex-col items-center justify-center  bg-white p-4">
         <p>Loading...</p>
       </div>
     );
@@ -30,7 +30,7 @@ const Logout = () => {
 
   if (session) {
     return (
-      <div className="flex flex-col items-center justify-center bg-gray-100 p-4">
+      <div className="flex flex-col items-center justify-center bg-white p-4">
         <div className="card w-full max-w-sm bg-white shadow-md rounded-lg overflow-hidden">
           <div className="p-4">
             <p className="text-center text-xl font-semibold mb-2">Welcome, {session.user?.name}</p>

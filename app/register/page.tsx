@@ -67,7 +67,7 @@ export default function Register() {
   };
 
   return (
-    <div className="flex justify-center bg-gray-100">
+    <div className="flex justify-center bg-white">
       <form onSubmit={handleSubmit} className="flex flex-col items-center p-6 bg-white shadow-md rounded-lg">
         {error && (
           <Alert type="error" message={error} />
