@@ -82,7 +82,9 @@ export default function Login() {
           <button type="submit" className="btn btn-primary w-72">
             Submit
           </button>
+          <button type="button">
           <GoogleSignInButton />
+          </button>
           <p className="mt-2">
             Do not have an account? Go to{" "}
             <Link href="/register" className="link-hover text-blue-500">
