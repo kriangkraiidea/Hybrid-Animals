@@ -25,8 +25,10 @@ export default function GoogleSignInButton() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      alert("❌ ไม่สามารถคัดลอกลิงก์ได้");
-    }
+  console.error("Copy failed:", err);
+  alert("❌ ไม่สามารถคัดลอกลิงก์ได้");
+}
+
   };
 
   return (
