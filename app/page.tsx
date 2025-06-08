@@ -74,10 +74,7 @@ const Home: React.FC = () => {
                 {copied ? "✅ คัดลอกแล้ว!" : "คัดลอกลิงก์"}
               </button>
 
-              <a
-                href="intent://hybrid-animals-kriangkrais-projects-6841c9c8.vercel.app#Intent;scheme=https;package=com.android.chrome;end"
-                className="btn btn-success w-full"
-              >
+              <a href="intent://hybrid-animals-kriangkrais-projects-6841c9c8.vercel.app#Intent;scheme=https;package=com.android.chrome;end" className="btn btn-outline btn-success">
                 เปิดด้วย Chrome (Android)
               </a>
             </div>

@@ -59,7 +59,7 @@ export default function Login() {
 
   return (
     <div>
-      <div className="flex justify-center bg-gray-100">
+      <div className="flex justify-center bg-white">
         <form onSubmit={handleSubmit} className="flex flex-col items-center p-6 bg-white shadow-md rounded-lg">
           {error && (
             <div role="alert" className="alert alert-error mb-3 py-2">

@@ -25,18 +25,17 @@ export default function Play() {
       <div className="max-w-2xl text-center mb-8">
         <h1 className="text-3xl font-bold mb-4 text-emerald-900">ยินดีต้อนรับสู่เกม</h1>
 
-        
-        <Image
-          src="https://firebasestorage.googleapis.com/v0/b/hybrid-animals-9a289.appspot.com/o/lion%20head.png?alt=media&token=caee7b5d-43bd-492e-8cc0-c01cd8cdfd6d"
-          alt="Hybrid Animals Logo"
-          width={128}
-          height={128}
-          className="justify-self-center"
-        />
+        <div className="flex justify-center mb-4">
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/hybrid-animals-9a289.appspot.com/o/lion%20head.png?alt=media&token=caee7b5d-43bd-492e-8cc0-c01cd8cdfd6d"
+            alt="Hybrid Animals Logo"
+            width={128}
+            height={128}
+            className="rounded-full"
+          />
+        </div>
 
-        <h1 className="text-6xl font-bold mb-4 py-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-          &quot;Hybrid Animals&quot;
-        </h1>
+        <h1 className="text-6xl font-bold mb-4 py-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">&quot;Hybrid Animals&quot;</h1>
         <p className="text-lg mb-4">
           ในเกมนี้ คุณจะได้ทดสอบความรู้และการสังเกตุของคุณเกี่ยวกับสัตว์ไฮบริด เราจะแสดงภาพของสิ่งมีชีวิตสุดแปลกให้คุณดู และคุณจะต้องเลือกชื่อสัตว์ที่ถูกต้องที่มาจากการรวมกันของสัตว์ไฮบริดตัวนั้น
           คุณสามารถเรียนรู้{" "}
@@ -88,9 +87,7 @@ export default function Play() {
         Start Game
       </button>
       <br />
-      <p className="text-xl mt-6 font-semibold text-emerald-900">
-        พร้อมแล้วหรือยัง? กดปุ่ม &quot;Start Game&quot; และทดสอบความรู้ของคุณได้เลย!
-      </p>
+      <p className="text-xl mt-6 font-semibold text-emerald-900">พร้อมแล้วหรือยัง? กดปุ่ม &quot;Start Game&quot; และทดสอบความรู้ของคุณได้เลย!</p>
     </div>
   );
 }

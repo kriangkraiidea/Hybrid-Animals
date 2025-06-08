@@ -61,7 +61,7 @@ export default function GoogleSignInButton() {
                 {copied ? "✅ คัดลอกแล้ว!" : "คัดลอกลิงก์"}
               </button>
               <a href="intent://hybrid-animals-kriangkrais-projects-6841c9c8.vercel.app#Intent;scheme=https;package=com.android.chrome;end" className="btn btn-outline btn-success">
-                เปิดด้วย Chrome
+                เปิดด้วย Chrome (Android)
               </a>
               {/* Note for iPhone */}
             <div className="text-sm text-gray-500 space-y-1 mt-2">
