@@ -50,7 +50,7 @@ export default function GoogleSignInButton() {
               <AlertTriangle className="w-10 h-10 text-yellow-600" />
             </div>
             <h2 className="text-xl font-semibold text-yellow-800 mb-2">⚠️ ไม่สามารถเข้าสู่ระบบจากแอปนี้ได้</h2>
-            <p className="text-lg mb-1">Google Login ไม่สามารถทำงานได้ในแอปอย่าง LINE, Facebook หรือ Instagram</p>
+            <p className="text-sm mb-2">Google Login ไม่สามารถทำงานได้ในแอปอย่าง LINE, Facebook หรือ Instagram</p>
             <p className="mb-4 text-sm text-gray-600">
               กรุณาคัดลอกลิงก์แล้วเปิดใน <strong>Chrome หรือ Safari</strong>
             </p>
@@ -63,7 +63,8 @@ export default function GoogleSignInButton() {
               <a href="intent://hybrid-animals-kriangkrais-projects-6841c9c8.vercel.app#Intent;scheme=https;package=com.android.chrome;end" className="btn btn-outline btn-success">
                 เปิดด้วย Chrome
               </a>
-              <p className="text-sm text-gray-600">หากใช้ iPhone กรุณาเปิดด้วย Safari</p>
+              <p className="text-sm text-gray-600">หากใช้ iPhone ให้คลิกที่ จุดสามจุด แล้วเลือก เปิดในเบราว์เซอร์</p>
+              <p className="text-sm text-gray-600">หรือ คัดลอกลิงก์แล้วเปิดด้วย Safari</p>
             </div>
           </div>
         </div>
