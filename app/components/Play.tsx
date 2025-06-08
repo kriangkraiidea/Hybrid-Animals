@@ -25,7 +25,7 @@ export default function Play() {
       <div className="max-w-2xl text-center mb-8">
         <h1 className="text-3xl font-bold mb-4 text-emerald-900">ยินดีต้อนรับสู่เกม</h1>
 
-        {/* เปลี่ยนจาก <img> เป็น <Image /> */}
+        
         <Image
           src="https://firebasestorage.googleapis.com/v0/b/hybrid-animals-9a289.appspot.com/o/lion%20head.png?alt=media&token=caee7b5d-43bd-492e-8cc0-c01cd8cdfd6d"
           alt="Hybrid Animals Logo"

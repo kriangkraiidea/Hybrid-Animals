@@ -63,8 +63,12 @@ export default function GoogleSignInButton() {
               <a href="intent://hybrid-animals-kriangkrais-projects-6841c9c8.vercel.app#Intent;scheme=https;package=com.android.chrome;end" className="btn btn-outline btn-success">
                 เปิดด้วย Chrome
               </a>
-              <p className="text-sm text-gray-600">หากใช้ iPhone ให้คลิกที่ จุดสามจุด แล้วเลือก เปิดในเบราว์เซอร์</p>
-              <p className="text-sm text-gray-600">หรือ คัดลอกลิงก์แล้วเปิดด้วย Safari</p>
+              {/* Note for iPhone */}
+            <div className="text-sm text-gray-500 space-y-1 mt-2">
+              <p>📱 สำหรับผู้ใช้ iPhone:</p>
+              <p>• คลิกที่ <strong>จุดสามจุด</strong> มุมล่างขวา</p>
+              <p>• เลือก <strong>เปิดในเบราว์เซอร์</strong> หรือเปิดผ่าน Safari</p>
+            </div>
             </div>
           </div>
         </div>
