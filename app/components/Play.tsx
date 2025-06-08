@@ -20,7 +20,7 @@ export default function Play() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 p-5 m-7">
+    <div className="flex flex-col items-center justify-center bg-white p-5 m-7">
       {/* Game Description */}
       <div className="max-w-2xl text-center mb-8">
         <h1 className="text-3xl font-bold mb-4 text-emerald-900">ยินดีต้อนรับสู่เกม</h1>

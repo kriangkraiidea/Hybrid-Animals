@@ -27,7 +27,7 @@ const About: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold text-center">เกี่ยวกับเกมนี้</h1>
-      <div className="shadow flex md:flex-row flex-col justify-center">
+      <div className="flex md:flex-row flex-col justify-center">
         <div className="flex flex-row self-center">
           <div className="text-secondary ">
             <div className="avatar ">
