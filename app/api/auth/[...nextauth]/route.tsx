@@ -26,7 +26,7 @@ declare module "next-auth" {
 }
 
 const authOptions: NextAuthOptions = {
-  debug: true,
+  debug: process.env.NODE_ENV === "development",
   providers: [
     CredentialsProvider({
       name: "Credentials",
