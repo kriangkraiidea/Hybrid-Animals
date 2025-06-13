@@ -4,28 +4,28 @@ export const userSchema = new Schema(
     {
         name: {
             type:String,
-            require:true
+            required:true
         },
         email: {
             type:String,
-            require:true
+            required:true
         },
         password: {
             type:String
         },
         highest_score: {
             type:Number,
-            require: true,
+            required: true,
             default:0
         },
         qty_playing: {
             type:Number,
-            require: true,
+            required: true,
             default:0
         },
         role: {
             type:String,
-            require: true,
+            required: true,
             default:"user"
         },
     }, {

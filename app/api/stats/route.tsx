@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/model/User";
-export const dynamic = 'force-static'; // ✅ ทำให้ API กลายเป็น Static
+export const dynamic = 'force-static';
 
 export async function GET() {
   try {
